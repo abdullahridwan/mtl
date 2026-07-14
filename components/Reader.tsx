@@ -24,9 +24,10 @@ interface ReaderProps {
   content: string
   availableChapters: number[]
   isRetranslated?: boolean
+  cleaningModel?: string | null
 }
 
-export default function Reader({ chapterNum, content, availableChapters, isRetranslated }: ReaderProps) {
+export default function Reader({ chapterNum, content, availableChapters, isRetranslated, cleaningModel }: ReaderProps) {
   const router = useRouter()
   const [theme, setTheme] = useState<Theme>('night')
   const [font, setFont] = useState<Font>('classic')
@@ -119,7 +120,7 @@ export default function Reader({ chapterNum, content, availableChapters, isRetra
             Chapter {chapterNum}
             {isRetranslated && (
               <span
-                title="Cleaned with an improved translation pass (consistent character gender/names, better coherence)"
+                title={`Cleaned with an improved translation pass (consistent character gender/names, better coherence)${cleaningModel ? ` -- model: ${cleaningModel}` : ''}`}
                 style={{
                   fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
                   color: 'var(--accent)', border: '1px solid var(--accent)', borderRadius: 999,
@@ -145,11 +146,13 @@ export default function Reader({ chapterNum, content, availableChapters, isRetra
         <p style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'system-ui, sans-serif', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 48 }}>
           Chapter {chapterNum}
           {isRetranslated && (
-            <span style={{
-              fontSize: 10, fontWeight: 700, letterSpacing: '0.06em',
-              color: 'var(--accent)', border: '1px solid var(--accent)', borderRadius: 999,
-              padding: '2px 8px', whiteSpace: 'nowrap',
-            }}>
+            <span
+              title={cleaningModel ? `Cleaned with model: ${cleaningModel}` : undefined}
+              style={{
+                fontSize: 10, fontWeight: 700, letterSpacing: '0.06em',
+                color: 'var(--accent)', border: '1px solid var(--accent)', borderRadius: 999,
+                padding: '2px 8px', whiteSpace: 'nowrap',
+              }}>
               ✨ Retranslated
             </span>
           )}

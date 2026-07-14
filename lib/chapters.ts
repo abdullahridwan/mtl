@@ -28,11 +28,17 @@ function loadMeta(): Record<string, ChapterMeta> {
   return metaCache!
 }
 
-// Chapters cleaned by the current gpt-5.5 + glossary pass, vs. the older
-// gpt-4.1-mini pass that had no cross-chapter character glossary.
+// Chapters cleaned by the current glossary-aware pass (recorded in
+// clean_meta.json), vs. the older gpt-4.1-mini pass that predates the
+// manifest and had no cross-chapter character glossary. Not tied to any
+// specific model name -- the cleaning model changes over time (see
+// clean_meta.json for which model cleaned a given chapter).
 export function isRetranslated(num: number): boolean {
-  const meta = loadMeta()[String(num)]
-  return !!meta && meta.model.startsWith('openai/gpt-5')
+  return !!loadMeta()[String(num)]
+}
+
+export function getCleaningModel(num: number): string | null {
+  return loadMeta()[String(num)]?.model ?? null
 }
 
 export function getAvailableChapters(): number[] {
