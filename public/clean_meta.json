@@ -340,23 +340,23 @@
     "cleaned_at": "2026-07-15T21:40:30.280569+00:00"
   },
   "446": {
-    "model": "qwen/qwen3-235b-a22b-2507",
-    "cleaned_at": "2026-07-15T21:41:36.239228+00:00"
+    "model": "anthropic/claude-sonnet-5",
+    "cleaned_at": "2026-07-17T16:57:44.012660+00:00"
   },
   "447": {
-    "model": "qwen/qwen3-235b-a22b-2507",
-    "cleaned_at": "2026-07-15T21:42:51.654827+00:00"
+    "model": "anthropic/claude-sonnet-5",
+    "cleaned_at": "2026-07-17T17:01:37.317444+00:00"
   },
   "448": {
-    "model": "qwen/qwen3-235b-a22b-2507",
-    "cleaned_at": "2026-07-15T21:44:06.133778+00:00"
+    "model": "anthropic/claude-sonnet-5",
+    "cleaned_at": "2026-07-17T17:02:47.384279+00:00"
   },
   "449": {
-    "model": "qwen/qwen3-235b-a22b-2507",
-    "cleaned_at": "2026-07-15T21:45:28.771074+00:00"
+    "model": "anthropic/claude-sonnet-5",
+    "cleaned_at": "2026-07-17T17:07:15.440058+00:00"
   },
   "450": {
-    "model": "qwen/qwen3-235b-a22b-2507",
-    "cleaned_at": "2026-07-15T21:46:35.732825+00:00"
+    "model": "anthropic/claude-sonnet-5",
+    "cleaned_at": "2026-07-17T17:11:00.701500+00:00"
   }
 }
