@@ -156,6 +156,11 @@ export default function Reader({ chapterNum, content, availableChapters, isRetra
               ✨ Retranslated
             </span>
           )}
+          {cleaningModel && (
+            <span style={{ fontSize: 10, fontWeight: 400, letterSpacing: '0.04em', textTransform: 'none', whiteSpace: 'nowrap' }}>
+              {cleaningModel.split('/').pop()}
+            </span>
+          )}
         </p>
         {paragraphs.map((para, i) => (
           <p key={i} style={{ fontSize, lineHeight: 1.9, marginBottom: '1.6em', color: 'var(--text)' }}>
