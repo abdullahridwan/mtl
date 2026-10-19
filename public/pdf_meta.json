@@ -29,6 +29,18 @@
     "prompt_tokens": 3749,
     "source_pdf": "The Infinite Mage (the novel) - 918 - Amethyst Writers.pdf"
   },
+  "919": {
+    "attempts": 1,
+    "chapter": 919,
+    "cleaned_at": "2026-10-19T20:12:01.695577+00:00",
+    "completion_tokens": 2362,
+    "cost_usd": 0.001637,
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "prompt_tokens": 3749,
+    "reasoning": "default",
+    "source_pdf": "The Infinite Mage (the novel) - 919 - Amethyst Writers.pdf",
+    "style": "rewrite"
+  },
   "920": {
     "attempts": 1,
     "chapter": 920,
@@ -38,6 +50,18 @@
     "model": "z-ai/glm-5.3",
     "prompt_tokens": 3471,
     "source_pdf": "The Infinite Mage (the novel) - 920 - Amethyst Writers.pdf"
+  },
+  "921": {
+    "attempts": 1,
+    "chapter": 921,
+    "cleaned_at": "2026-10-19T20:11:47.617444+00:00",
+    "completion_tokens": 2781,
+    "cost_usd": 0.003865,
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "prompt_tokens": 4337,
+    "reasoning": "default",
+    "source_pdf": "The Infinite Mage (the novel) - 921 - Amethyst Writers.pdf",
+    "style": "rewrite"
   },
   "922": {
     "attempts": 1,
