@@ -1,8 +1,6 @@
-import { redirect } from 'next/navigation'
-import { getAvailableChapters } from '@/lib/chapters'
+import { getChapterIndex } from '@/lib/chapters'
+import ChapterIndex from '@/components/ChapterIndex'
 
 export default function Home() {
-  const chapters = getAvailableChapters()
-  if (chapters.length === 0) redirect('/no-chapters')
-  redirect(`/chapter/${chapters[0]}`)
+  return <ChapterIndex chapters={getChapterIndex()} />
 }

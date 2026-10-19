@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 type Theme = 'night' | 'dusk' | 'parchment' | 'paper'
 type Font = 'classic' | 'modern' | 'scholar'
@@ -119,9 +120,9 @@ export default function Reader({ chapterNum, content, availableChapters, isRetra
         backdropFilter: 'blur(8px)',
       }}>
         <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px', height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--accent)' }}>
+          <Link href="/" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--accent)', textDecoration: 'none' }}>
             Infinite Mage
-          </span>
+          </Link>
           <span style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'system-ui, sans-serif', fontSize: 13, color: 'var(--text-muted)' }}>
             Chapter {chapterNum}
             {badgeLabel && (

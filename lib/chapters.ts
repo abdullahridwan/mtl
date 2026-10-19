@@ -82,3 +82,30 @@ export function getChapterContent(num: number): string | null {
   if (!fs.existsSync(filePath)) return null
   return fs.readFileSync(filePath, 'utf-8')
 }
+
+// Subtitle from the chapter header ("Chapter N" / "<subtitle>" / "~*~").
+export function getChapterSubtitle(num: number): string | null {
+  const content = getChapterContent(num)
+  if (!content) return null
+  const lines = content.split('\n').map(l => l.trim()).filter(Boolean).slice(0, 3)
+  const sub = lines[1]
+  return sub && sub !== '~*~' ? sub : null
+}
+
+export interface ChapterSummary {
+  num: number
+  subtitle: string | null
+  source: ChapterSource
+  model: string | null
+  retranslated: boolean
+}
+
+export function getChapterIndex(): ChapterSummary[] {
+  return getAvailableChapters().map(num => ({
+    num,
+    subtitle: getChapterSubtitle(num),
+    source: getChapterSource(num),
+    model: getCleaningModel(num),
+    retranslated: isRetranslated(num),
+  }))
+}

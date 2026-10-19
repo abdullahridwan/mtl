@@ -1,8 +1,32 @@
 {
   "916": {
+    "attempts": 1,
     "chapter": 916,
-    "cleaned_at": "2026-10-19T04:57:08.419027+00:00",
+    "cleaned_at": "2026-10-19T05:10:27.503345+00:00",
+    "completion_tokens": 94395,
+    "cost_usd": 0.25368,
     "model": "z-ai/glm-5.3",
+    "prompt_tokens": 3608,
     "source_pdf": "The Infinite Mage (the novel) - 916 - Amethyst Writers.pdf"
+  },
+  "917": {
+    "attempts": 1,
+    "chapter": 917,
+    "cleaned_at": "2026-10-19T05:10:38.781300+00:00",
+    "completion_tokens": 98710,
+    "cost_usd": 0.267044,
+    "model": "z-ai/glm-5.3",
+    "prompt_tokens": 3721,
+    "source_pdf": "The Infinite Mage (the novel) - 917 - Amethyst Writers.pdf"
+  },
+  "918": {
+    "attempts": 1,
+    "chapter": 918,
+    "cleaned_at": "2026-10-19T05:11:27.616827+00:00",
+    "completion_tokens": 111817,
+    "cost_usd": 0.302195,
+    "model": "z-ai/glm-5.3",
+    "prompt_tokens": 3749,
+    "source_pdf": "The Infinite Mage (the novel) - 918 - Amethyst Writers.pdf"
   }
 }
