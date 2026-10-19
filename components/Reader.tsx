@@ -1,8 +1,6 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 
 type Theme = 'night' | 'dusk' | 'parchment' | 'paper'
 type Font = 'classic' | 'modern' | 'scholar'
@@ -35,7 +33,6 @@ export default function Reader({ chapterNum, content, availableChapters, isRetra
   const badgeTitle = isPdf
     ? `Light-touch edit of a PDF chapter (pronouns, names, and only the incomprehensible sentences fixed)${cleaningModel ? ` -- model: ${cleaningModel}` : ''}`
     : `Cleaned with an improved translation pass (consistent character gender/names, better coherence)${cleaningModel ? ` -- model: ${cleaningModel}` : ''}`
-  const router = useRouter()
   const [theme, setTheme] = useState<Theme>('night')
   const [font, setFont] = useState<Font>('classic')
   const [fontSize, setFontSize] = useState(19)
@@ -83,9 +80,11 @@ export default function Reader({ chapterNum, content, availableChapters, isRetra
     if (jumpOpen) setTimeout(() => jumpInputRef.current?.focus(), 50)
   }, [jumpOpen])
 
+  // Full page loads rather than client-side routing: each chapter is a static
+  // page the offline cache can serve, while router fetches can't be cached reliably.
   const navigate = useCallback((num: number) => {
-    router.push(`/chapter/${num}`)
-  }, [router])
+    window.location.assign(`/chapter/${num}`)
+  }, [])
 
   // Keyboard navigation
   useEffect(() => {
@@ -120,9 +119,9 @@ export default function Reader({ chapterNum, content, availableChapters, isRetra
         backdropFilter: 'blur(8px)',
       }}>
         <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px', height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Link href="/" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--accent)', textDecoration: 'none' }}>
+          <a href="/" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--accent)', textDecoration: 'none' }}>
             Infinite Mage
-          </Link>
+          </a>
           <span style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'system-ui, sans-serif', fontSize: 13, color: 'var(--text-muted)' }}>
             Chapter {chapterNum}
             {badgeLabel && (

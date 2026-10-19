@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import OfflineSave from '@/components/OfflineSave'
 import type { ChapterSummary } from '@/lib/chapters'
 
 const THEME_VARS: Record<string, Record<string, string>> = {
@@ -39,6 +39,8 @@ export default function ChapterIndex({ chapters }: { chapters: ChapterSummary[] 
           {chapters.length} chapters, {chapters[0]?.num}–{chapters[chapters.length - 1]?.num}
         </p>
 
+        <OfflineSave chapters={chapters.map(c => c.num)} />
+
         <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
           <input
             id="chapter-search"
@@ -62,7 +64,7 @@ export default function ChapterIndex({ chapters }: { chapters: ChapterSummary[] 
         <ul style={{ listStyle: 'none' }}>
           {shown.map(c => (
             <li key={c.num} style={{ borderBottom: '1px solid var(--border)' }}>
-              <Link
+              <a
                 href={`/chapter/${c.num}`}
                 style={{ display: 'flex', alignItems: 'baseline', gap: 14, padding: '12px 4px', color: 'var(--text)', textDecoration: 'none' }}
               >
@@ -79,7 +81,7 @@ export default function ChapterIndex({ chapters }: { chapters: ChapterSummary[] 
                     {c.model ? ` · ${c.model.split('/').pop()}` : ''}
                   </span>
                 )}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
