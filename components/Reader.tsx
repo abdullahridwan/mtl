@@ -25,9 +25,15 @@ interface ReaderProps {
   availableChapters: number[]
   isRetranslated?: boolean
   cleaningModel?: string | null
+  source?: 'pdf' | 'web'
 }
 
-export default function Reader({ chapterNum, content, availableChapters, isRetranslated, cleaningModel }: ReaderProps) {
+export default function Reader({ chapterNum, content, availableChapters, isRetranslated, cleaningModel, source }: ReaderProps) {
+  const isPdf = source === 'pdf'
+  const badgeLabel = isPdf ? 'PDF edit' : isRetranslated ? '✨ Retranslated' : null
+  const badgeTitle = isPdf
+    ? `Light-touch edit of a PDF chapter (pronouns, names, and only the incomprehensible sentences fixed)${cleaningModel ? ` -- model: ${cleaningModel}` : ''}`
+    : `Cleaned with an improved translation pass (consistent character gender/names, better coherence)${cleaningModel ? ` -- model: ${cleaningModel}` : ''}`
   const router = useRouter()
   const [theme, setTheme] = useState<Theme>('night')
   const [font, setFont] = useState<Font>('classic')
@@ -118,16 +124,16 @@ export default function Reader({ chapterNum, content, availableChapters, isRetra
           </span>
           <span style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'system-ui, sans-serif', fontSize: 13, color: 'var(--text-muted)' }}>
             Chapter {chapterNum}
-            {isRetranslated && (
+            {badgeLabel && (
               <span
-                title={`Cleaned with an improved translation pass (consistent character gender/names, better coherence)${cleaningModel ? ` -- model: ${cleaningModel}` : ''}`}
+                title={badgeTitle}
                 style={{
                   fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
                   color: 'var(--accent)', border: '1px solid var(--accent)', borderRadius: 999,
                   padding: '2px 8px', whiteSpace: 'nowrap',
                 }}
               >
-                ✨ Retranslated
+                {badgeLabel}
               </span>
             )}
           </span>
@@ -145,15 +151,15 @@ export default function Reader({ chapterNum, content, availableChapters, isRetra
       <main ref={contentRef} style={{ maxWidth: 660, margin: '0 auto', padding: '52px 24px 140px', fontFamily: FONTS[font] }}>
         <p style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'system-ui, sans-serif', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 48 }}>
           Chapter {chapterNum}
-          {isRetranslated && (
+          {badgeLabel && (
             <span
-              title={cleaningModel ? `Cleaned with model: ${cleaningModel}` : undefined}
+              title={badgeTitle}
               style={{
                 fontSize: 10, fontWeight: 700, letterSpacing: '0.06em',
                 color: 'var(--accent)', border: '1px solid var(--accent)', borderRadius: 999,
                 padding: '2px 8px', whiteSpace: 'nowrap',
               }}>
-              ✨ Retranslated
+              {badgeLabel}
             </span>
           )}
           {cleaningModel && (
