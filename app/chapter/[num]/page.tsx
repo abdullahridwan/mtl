@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getAvailableChapters, getChapterContent, isRetranslated, getCleaningModel, getChapterSource } from '@/lib/chapters'
+import { getAvailableChapters, getChapterContent, isRetranslated, getCleaningModel, getChapterSource, getChapterVersions } from '@/lib/chapters'
 import Reader from '@/components/Reader'
 
 interface Props {
@@ -29,6 +29,7 @@ export default function ChapterPage({ params }: Props) {
       isRetranslated={isRetranslated(chapterNum)}
       cleaningModel={getCleaningModel(chapterNum)}
       source={getChapterSource(chapterNum)}
+      versions={getChapterVersions(chapterNum)}
     />
   )
 }

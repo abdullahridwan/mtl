@@ -109,3 +109,33 @@ export function getChapterIndex(): ChapterSummary[] {
     retranslated: isRetranslated(num),
   }))
 }
+
+// Hand rewrites by Claude (directly from the raw source text), kept as a second
+// version the reader can toggle to. Written to public/claude_chapters by hand.
+const CLAUDE_DIR = path.join(process.cwd(), 'public', 'claude_chapters')
+const CLAUDE_META_PATH = path.join(process.cwd(), 'public', 'claude_meta.json')
+let claudeMetaCache: Record<string, ChapterMeta> | null = null
+
+export interface ChapterVersion {
+  id: 'default' | 'claude'
+  label: string
+  model: string | null
+  content: string
+}
+
+export function getChapterVersions(num: number): ChapterVersion[] {
+  const versions: ChapterVersion[] = []
+  const main = getChapterContent(num)
+  if (main) versions.push({ id: 'default', label: 'Model', model: getCleaningModel(num), content: main })
+  const claudePath = path.join(CLAUDE_DIR, `chapter_${num}.txt`)
+  if (fs.existsSync(claudePath)) {
+    if (!claudeMetaCache) claudeMetaCache = readJson(CLAUDE_META_PATH)
+    versions.push({
+      id: 'claude',
+      label: 'Claude',
+      model: claudeMetaCache[String(num)]?.model ?? 'claude',
+      content: fs.readFileSync(claudePath, 'utf-8'),
+    })
+  }
+  return versions
+}

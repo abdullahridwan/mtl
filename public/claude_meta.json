@@ -1,0 +1,16 @@
+{
+  "927": {
+    "cleaned_at": "2026-10-21T03:40:20.008747+00:00",
+    "cost_usd": 0,
+    "model": "anthropic/claude-opus-5-5",
+    "source": "scraped/chapter_927.txt",
+    "style": "hand rewrite from scraped source"
+  },
+  "928": {
+    "cleaned_at": "2026-10-21T03:40:20.009510+00:00",
+    "cost_usd": 0,
+    "model": "anthropic/claude-opus-5-5",
+    "source": "scraped/chapter_928.txt",
+    "style": "hand rewrite from scraped source"
+  }
+}

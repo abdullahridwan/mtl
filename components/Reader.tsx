@@ -25,11 +25,29 @@ interface ReaderProps {
   isRetranslated?: boolean
   cleaningModel?: string | null
   source?: 'pdf' | 'web'
+  versions?: { id: 'default' | 'claude'; label: string; model: string | null; content: string }[]
 }
 
-export default function Reader({ chapterNum, content, availableChapters, isRetranslated, cleaningModel, source }: ReaderProps) {
+export default function Reader({ chapterNum, content: defaultContent, availableChapters, isRetranslated, cleaningModel: defaultModel, source, versions = [] }: ReaderProps) {
+  // Some chapters have a second version (a Claude rewrite). The choice is
+  // remembered across chapters; Claude is shown by default where it exists.
+  const hasAlt = versions.length > 1
+  const [versionId, setVersionId] = useState<'default' | 'claude'>('claude')
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('im-version')
+      if (saved === 'default' || saved === 'claude') setVersionId(saved)
+    } catch {}
+  }, [])
+  const chooseVersion = (id: 'default' | 'claude') => {
+    setVersionId(id)
+    try { localStorage.setItem('im-version', id) } catch {}
+  }
+  const active = hasAlt ? (versions.find(v => v.id === versionId) ?? versions[0]) : null
+  const content = active ? active.content : defaultContent
+  const cleaningModel = active ? active.model : defaultModel
   const isPdf = source === 'pdf'
-  const badgeLabel = isPdf ? 'PDF edit' : isRetranslated ? '✨ Retranslated' : null
+  const badgeLabel = active?.id === 'claude' ? 'Claude rewrite' : isPdf ? 'PDF edit' : isRetranslated ? '✨ Retranslated' : null
   const badgeTitle = isPdf
     ? `Light-touch edit of a PDF chapter (pronouns, names, and only the incomprehensible sentences fixed)${cleaningModel ? ` -- model: ${cleaningModel}` : ''}`
     : `Cleaned with an improved translation pass (consistent character gender/names, better coherence)${cleaningModel ? ` -- model: ${cleaningModel}` : ''}`
@@ -168,6 +186,26 @@ export default function Reader({ chapterNum, content, availableChapters, isRetra
             </span>
           )}
         </p>
+        {hasAlt && (
+          <div role="radiogroup" aria-label="Translation version" style={{ display: 'flex', gap: 6, marginTop: -28, marginBottom: 36, fontFamily: 'system-ui, sans-serif' }}>
+            {versions.map(v => (
+              <button
+                key={v.id}
+                role="radio"
+                aria-checked={active?.id === v.id}
+                onClick={() => chooseVersion(v.id)}
+                style={{
+                  padding: '6px 12px', borderRadius: 999, fontSize: 12, cursor: 'pointer',
+                  border: `1px solid ${active?.id === v.id ? 'var(--accent)' : 'var(--border)'}`,
+                  background: active?.id === v.id ? 'var(--accent)' : 'transparent',
+                  color: active?.id === v.id ? '#fff' : 'var(--text-muted)',
+                }}
+              >
+                {v.id === 'claude' ? 'Claude rewrite' : (v.model ?? 'Model').split('/').pop()}
+              </button>
+            ))}
+          </div>
+        )}
         {paragraphs.map((para, i) => (
           <p key={i} style={{ fontSize, lineHeight: 1.9, marginBottom: '1.6em', color: 'var(--text)' }}>
             {para}
