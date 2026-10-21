@@ -12,5 +12,54 @@
     "model": "anthropic/claude-opus-5-5",
     "source": "scraped/chapter_928.txt",
     "style": "hand rewrite from scraped source"
+  },
+  "929": {
+    "cleaned_at": "2026-10-21T03:49:42.763645+00:00",
+    "cost_usd": 0,
+    "model": "anthropic/claude-opus-5-5",
+    "source": "scraped/chapter_929.txt",
+    "style": "hand rewrite from scraped source"
+  },
+  "930": {
+    "cleaned_at": "2026-10-21T03:49:42.764817+00:00",
+    "cost_usd": 0,
+    "model": "anthropic/claude-opus-5-5",
+    "source": "scraped/chapter_930.txt",
+    "style": "hand rewrite from scraped source"
+  },
+  "931": {
+    "cleaned_at": "2026-10-21T03:49:42.765102+00:00",
+    "cost_usd": 0,
+    "model": "anthropic/claude-opus-5-5",
+    "source": "scraped/chapter_931.txt",
+    "style": "hand rewrite from scraped source"
+  },
+  "932": {
+    "cleaned_at": "2026-10-21T03:49:42.765340+00:00",
+    "cost_usd": 0,
+    "model": "anthropic/claude-opus-5-5",
+    "source": "scraped/chapter_932.txt",
+    "style": "hand rewrite from scraped source"
+  },
+  "933": {
+    "cleaned_at": "2026-10-21T03:49:42.765576+00:00",
+    "cost_usd": 0,
+    "model": "anthropic/claude-opus-5-5",
+    "source": "scraped/chapter_933.txt",
+    "style": "hand rewrite from scraped source"
+  },
+  "934": {
+    "cleaned_at": "2026-10-21T03:49:42.765803+00:00",
+    "cost_usd": 0,
+    "model": "anthropic/claude-opus-5-5",
+    "source": "scraped/chapter_934.txt",
+    "style": "hand rewrite from scraped source"
+  },
+  "935": {
+    "cleaned_at": "2026-10-21T03:49:42.766052+00:00",
+    "cost_usd": 0,
+    "model": "anthropic/claude-opus-5-5",
+    "source": "scraped/chapter_935.txt",
+    "style": "hand rewrite from scraped source"
   }
 }
