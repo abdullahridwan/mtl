@@ -14,7 +14,7 @@
     "style": "hand rewrite from scraped source"
   },
   "929": {
-    "cleaned_at": "2026-10-21T03:49:42.763645+00:00",
+    "cleaned_at": "2026-10-21T03:51:34.245147+00:00",
     "cost_usd": 0,
     "model": "anthropic/claude-opus-5-5",
     "source": "scraped/chapter_929.txt",
